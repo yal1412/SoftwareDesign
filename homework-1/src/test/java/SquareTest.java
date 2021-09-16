@@ -1,24 +1,18 @@
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class SquareTest extends TestCase {
+import javax.swing.*;
 
-    public void testCalculateArea() {
+import static org.junit.jupiter.api.Assertions.*;
 
-        Square s1 = new Square(-3.);
-        double result = s1.calculateArea();
-        assertTrue(result == 0.);
+class SquareTest {
 
-        s1 = new Square(0.);
-        result = s1.calculateArea();
-        assertTrue(result == 0.);
-
-        s1 = new Square(3.);
-        result = s1.calculateArea();
-        assertTrue(result == 9.);
-
-        s1 = new Square(5.);
-        result = s1.calculateArea();
-        assertTrue(result == 25.);
-
+    @ParameterizedTest
+    @CsvSource({"-3.,0", "0.,0.", "3.,9.", "5.,25."})
+    void calculateArea(double r, double square) {
+        Square s = new Square(r);
+        assertEquals(square, s.calculateArea());
     }
 }

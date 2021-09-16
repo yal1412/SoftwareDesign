@@ -1,8 +1,8 @@
-abstract class Figure {
-    public abstract double calculateArea();
+public interface Figure {
+    double calculateArea();
 }
 
-class Circle extends Figure {
+class Circle implements Figure {
 
     private final double radius;
 
@@ -10,8 +10,7 @@ class Circle extends Figure {
         if (radius < 0) {
             System.out.println("error: radius < 0, radius will be changed to 0");
             this.radius = 0;
-        }
-        else {
+        } else {
             this.radius = radius;
         }
     }
@@ -21,47 +20,44 @@ class Circle extends Figure {
     }
 }
 
-class Square extends Figure {
+class Square implements Figure {
     private final double side;
 
-    public Square(double side){
+    public Square(double side) {
         if (side < 0) {
             System.out.println("error: side < 0, side will be changed to 0");
             this.side = 0;
-        }
-        else {
+        } else {
             this.side = side;
         }
     }
 
-    public double calculateArea(){
+    public double calculateArea() {
         return side * side;
     }
 }
 
-class Rectangle extends Figure {
+class Rectangle implements Figure {
     private final double verticalSide;
     private final double horizontalSide;
 
-    public Rectangle(double verticalSide, double horizontalSide){
+    public Rectangle(double verticalSide, double horizontalSide) {
         if (verticalSide < 0) {
             System.out.println("error: verticalSide < 0, verticalSide will be changed to 0");
             this.verticalSide = 0;
-        }
-        else {
+        } else {
             this.verticalSide = verticalSide;
         }
 
         if (horizontalSide < 0) {
             System.out.println("error: horizontalSide < 0, horizontalSide will be changed to 0");
             this.horizontalSide = 0;
-        }
-        else {
+        } else {
             this.horizontalSide = horizontalSide;
         }
     }
 
-    public double calculateArea(){
+    public double calculateArea() {
         return verticalSide * horizontalSide;
     }
 }

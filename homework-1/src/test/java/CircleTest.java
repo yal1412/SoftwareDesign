@@ -1,22 +1,18 @@
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class CircleTest extends TestCase {
+import javax.swing.*;
 
-    public void testCalculateArea() {
-        Circle c1 = new Circle(-3.);
-        double result = c1.calculateArea();
-        assertTrue(result == 0.);
+import static org.junit.jupiter.api.Assertions.*;
 
-        c1 = new Circle(0.);
-        result = c1.calculateArea();
-        assertTrue(result == 0.);
+class CircleTest {
 
-        c1 = new Circle(3.);
-        result = c1.calculateArea();
-        assertTrue(result == Math.PI * 9.);
-
-        c1 = new Circle(5.);
-        result = c1.calculateArea();
-        assertTrue(result == Math.PI * 25.);
+    @ParameterizedTest
+    @CsvSource({"-3.,0", "0.,0.", "3.," + Math.PI * 9., "5.," + Math.PI * 25.})
+    void calculateArea(double r, double square) {
+        Circle c = new Circle(r);
+        assertEquals(square, c.calculateArea());
     }
 }

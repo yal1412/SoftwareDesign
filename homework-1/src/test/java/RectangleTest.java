@@ -1,23 +1,18 @@
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class RectangleTest extends TestCase {
+import javax.swing.*;
 
-    public void testCalculateArea() {
+import static org.junit.jupiter.api.Assertions.*;
 
-        Rectangle r1 = new Rectangle(-3., -5.);
-        double result = r1.calculateArea();
-        assertTrue(result == 0.);
+class RectangleTest {
 
-        r1 = new Rectangle(0., -5.);
-        result = r1.calculateArea();
-        assertTrue(result == 0.);
-
-        r1 = new Rectangle(-3., 0.);
-        result = r1.calculateArea();
-        assertTrue(result == 0.);
-
-        r1 = new Rectangle(3., 5.);
-        result = r1.calculateArea();
-        assertTrue(result == 15.);
+    @ParameterizedTest
+    @CsvSource({"-3.,-5.,0.", "-3.,0.,0.", "0.,-5.,0.", "3.,5.,15."})
+    void calculateArea(double vs, double hs, double square) {
+        Rectangle r = new Rectangle(vs, hs);
+        assertEquals(square, r.calculateArea());
     }
 }
